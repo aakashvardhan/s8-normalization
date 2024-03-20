@@ -1,6 +1,6 @@
 from models.model import Net
 from models.model_utils import model_summary
-
+from config import get_config
 
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader, Subset
@@ -68,7 +68,7 @@ def test_model_sanity(model_):
 
 if __name__ == '__main__':
     # Create
-    
-    model = Net()
+    config = get_config()
+    model = Net(config)
     model_summary(model, input_size=(3, 32, 32))
     test_model_sanity(model)

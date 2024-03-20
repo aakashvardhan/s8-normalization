@@ -48,9 +48,11 @@ class TransitionBlock(nn.Module):
         return self.pool(x)
     
 class Net(nn.Module):
-    def __init__(self, n_channels=32, dropout_value=config['dropout'],norm=config['norm']):
+    def __init__(self,config):
         super(Net, self).__init__()
-        
+        n_channels=32
+        dropout_value=config['dropout']
+        norm=config['norm']
         # Convolution block 1
         self.conv1 = ConvBlock(3, n_channels // 2, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 3
         self.conv2 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 5
