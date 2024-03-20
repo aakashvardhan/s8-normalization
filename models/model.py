@@ -50,7 +50,7 @@ class TransitionBlock(nn.Module):
 class Net(nn.Module):
     def __init__(self,config):
         super(Net, self).__init__()
-        n_channels=32
+        n_channels=config['n_channels']
         dropout_value=config['dropout']
         norm=config['norm']
         # Convolution block 1
