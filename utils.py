@@ -1,7 +1,7 @@
 from torchvision import datasets
 import torch
 import torch.nn.functional as F
-
+import matplotlib.pyplot as plt
 
 def setup_cifar10_data(config):
     # CUDA?
@@ -84,3 +84,15 @@ def test(model, device, test_loader):
     test_acc.append(100. * correct / len(test_loader.dataset))
     
     return test_loss
+
+# Function to plot the training and testing graphs for loss and accuracy
+def plt_fig():
+    fig, axs = plt.subplots(2,2,figsize=(15,10))
+    axs[0, 0].plot(train_losses)
+    axs[0, 0].set_title("Training Loss")
+    axs[1, 0].plot(train_acc[4000:])
+    axs[1, 0].set_title("Training Accuracy")
+    axs[0, 1].plot(test_losses)
+    axs[0, 1].set_title("Test Loss")
+    axs[1, 1].plot(test_acc)
+    axs[1, 1].set_title("Test Accuracy")
