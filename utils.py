@@ -19,7 +19,7 @@ def setup_cifar10_data(config):
     train_loader = torch.utils.data.DataLoader(train_data, batch_size=config['batch_size'], shuffle=True, num_workers=2, pin_memory=True)
     test_loader = torch.utils.data.DataLoader(test_data, batch_size=config['batch_size'], shuffle=False, num_workers=2, pin_memory=True)
 
-    return train_loader, test_loader
+    return train_data,test_data,train_loader, test_loader
 
 
 train_losses = []
