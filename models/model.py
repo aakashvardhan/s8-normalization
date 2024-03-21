@@ -62,15 +62,15 @@ class Net(nn.Module):
         
         # Convolution block 2
         self.conv4 = ConvBlock(n_channels // 2, n_channels // 2, kernel_size=(3,3),norm=norm, padding=1) # output_size = 16, RF = 10
-        self.conv5 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 16, RF = 14
+        self.conv5 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1,dropout_value=dropout_value) # output_size = 16, RF = 14
         self.conv6 = ConvBlock(n_channels, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 16, RF = 18
         
         # Transition block 2
         self.conv7 = TransitionBlock(n_channels, n_channels // 2) # output_size = 8, RF = 20
         
         # Convolution block 3
-        self.conv8 = ConvBlock(n_channels // 2, n_channels // 2, kernel_size=(3,3),norm=norm, padding=1) # output_size = 8, RF = 36
-        self.conv9 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 8, RF = 52
+        self.conv8 = ConvBlock(n_channels // 2, n_channels // 2, kernel_size=(3,3),norm=norm, padding=1,dropout_value=dropout_value) # output_size = 8, RF = 36
+        self.conv9 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1,dropout_value=dropout_value) # output_size = 8, RF = 52
         self.conv10 = ConvBlock(n_channels, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 8, RF = 68
         
         # Output block
