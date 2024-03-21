@@ -14,3 +14,13 @@ def model_summary(model, input_size=(1, 28, 28)):
     
 def sgd_optimizer(model, lr=config['lr'], momentum=0.9, weight_decay=0.0):
     return optim.SGD(model.parameters(), lr=lr, momentum=momentum, weight_decay=weight_decay)
+
+
+def save_model(model, path):
+    # Save the model
+    torch.save(model.state_dict(), path)
+    
+def load_model(model, path):
+    # Load the model
+    model.load_state_dict(torch.load(path))
+    return model
