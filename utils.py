@@ -61,6 +61,24 @@ def train(model, device, train_loader, optimizer, epoch):
 
         pbar.set_description(desc= f'Loss={loss.item()} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
         train_acc.append(100*correct/processed)
+        
+def get_misclassified_images(model, device, test_loader):
+    misclassified_images = []
+    misclassified_actuals = []
+    misclassified_predictions = []
+    with torch.no_grad():
+        for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
+            output = model(data)
+            pred = output.argmax(dim=1, keepdim=True).squeeze()
+            actual = target
+            for i in range(len(pred)):
+                if pred[i]!=actual[i]:
+                    misclassified_images.append(data[i])
+                    misclassified_actuals.append(actual[i])
+                    misclassified_predictions.append(pred[i])
+    return misclassified_images, misclassified_actuals, misclassified_predictions
+    
 
 def test(model, device, test_loader):
     model.eval()
