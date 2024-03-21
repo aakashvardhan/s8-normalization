@@ -74,7 +74,7 @@ class Net(nn.Module):
         self.conv10 = ConvBlock(n_channels, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 8, RF = 68
         
         # Output block
-        self.gap = nn.AdaptiveAvgPool2d(1) # output_size = 1, RF = 76
+        self.gap = nn.AvgPool2d(kernel_size=(8,8)) # output_size = 1, RF = 76
         self.conv11 = nn.Conv2d(n_channels, 10, kernel_size=(1,1), padding=0) # output_size = 1, RF = 76
         
     def forward(self, x):
