@@ -106,7 +106,7 @@ def test(model, device, test_loader):
 # Function to plot the training and testing graphs for loss and accuracy
 def plt_fig():
     fig, axs = plt.subplots(2,2,figsize=(15,10))
-    axs[0, 0].plot(train_losses)
+    axs[0, 0].plot([train_loss.cpu().detach().numpy() for train_loss in train_losses])
     axs[0, 0].set_title("Training Loss")
     axs[1, 0].plot(train_acc[4000:])
     axs[1, 0].set_title("Training Accuracy")

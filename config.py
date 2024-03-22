@@ -4,6 +4,7 @@ from transform import train_transforms, test_transforms
 
 def get_config():
     config = {
+        'step_size': 6,
         'seed': 1,
         'n_channels': 32,
         'device': torch.device("cuda" if torch.cuda.is_available() else "cpu"),
