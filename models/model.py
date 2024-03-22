@@ -54,9 +54,8 @@ class Net(nn.Module):
         dropout_value=config['dropout']
         norm=config['norm']
         # Convolution block 1
-        self.conv1 = ConvBlock(3, n_channels // 2, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 3
-        self.conv2 = ConvBlock(n_channels // 2, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 5
-        
+        self.conv1 = ConvBlock(3, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 3
+        self.conv2 = ConvBlock(n_channels, n_channels, kernel_size=(3,3),norm=norm, padding=1) # output_size = 32, RF = 5
         # Transition block 1
         self.conv3 = TransitionBlock(n_channels, n_channels // 2) # output_size = 16, RF = 6
         
@@ -79,11 +78,11 @@ class Net(nn.Module):
         
     def forward(self, x):
         x = self.conv1(x)
-        x = self.conv2(x)
+        x = x + self.conv2(x)
         x = self.conv3(x)
         x = self.conv4(x)
         x = self.conv5(x)
-        x = self.conv6(x)
+        x = x + self.conv6(x)
         x = self.conv7(x)
         x = self.conv8(x)
         x = self.conv9(x)
