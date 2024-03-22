@@ -12,11 +12,14 @@ def main(config, lr_scheduler=False):
     model_summary(model, input_size=(3, 32, 32))
     optimizer = sgd_optimizer(model, lr=config['lr'])
     scheduler = StepLR(optimizer, step_size=config['step_size'], gamma=0.1)
-    for epoch in range(config['epochs']):
+    lr = []
+    for epoch in range(1,config['epochs']+1):
+        print("EPOCH:", epoch)
         train(model, config['device'], train_loader, optimizer, epoch)
         test(model, config['device'], test_loader)
         if lr_scheduler == True:
             scheduler.step()
+            lr.append(optimizer.param_groups[0]['lr'])
     
     # format name of model file according to config['norm']
     model_file = 'model_' + config['norm'] + '.pt'
