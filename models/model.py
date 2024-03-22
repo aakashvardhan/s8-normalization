@@ -28,9 +28,9 @@ class ConvBlock(nn.Module):
         if norm == 'bn':
             self.norm = lambda num_features: nn.BatchNorm2d(num_features)
         elif norm == 'gn':
-            self.norm = lambda num_features: nn.GroupNorm(GROUP_SIZE_gn, num_features)
+            self.norm = lambda num_features: nn.GroupNorm(GROUP_SIZE_GN, num_features)
         elif norm == 'ln':
-            self.norm = lambda num_features: LayerNorm(GROUP_SIZE_ln, num_features)
+            self.norm = lambda num_features: LayerNorm(num_features)
         else:
             raise ValueError('Norm type {} not supported'.format(norm))
         
