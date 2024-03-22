@@ -8,9 +8,19 @@ from config import get_config
 # sys.path.append('/Users/aakashvardhan/Library/CloudStorage/GoogleDrive-vardhan.aakash1@gmail.com/My Drive/ERA v2/s8-normalization/config.py')
 
 
-GROUP_SIZE_gn = 2
-GROUP_SIZE_ln = 1
+GROUP_SIZE_GN = 2
+GROUP_SIZE_LN = 1
 config = get_config()
+
+class LayerNorm(nn.Module):
+    def __init__(self, num_features):
+        super().__init__()
+        self.layer_norm = nn.GroupNorm(num_groups=GROUP_SIZE_LN, num_channels=num_features)
+        
+    def forward(self, x):
+        return self.layer_norm(x)
+
+
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels,norm, kernel_size=(3,3),dropout_value=0, **kwargs):
         super().__init__()
@@ -20,7 +30,7 @@ class ConvBlock(nn.Module):
         elif norm == 'gn':
             self.norm = lambda num_features: nn.GroupNorm(GROUP_SIZE_gn, num_features)
         elif norm == 'ln':
-            self.norm = lambda num_features: nn.GroupNorm(GROUP_SIZE_ln, num_features)
+            self.norm = lambda num_features: LayerNorm(GROUP_SIZE_ln, num_features)
         else:
             raise ValueError('Norm type {} not supported'.format(norm))
         
