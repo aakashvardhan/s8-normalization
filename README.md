@@ -22,9 +22,9 @@ Normalization is a technique used to scale the input features to a similar range
 
 1. **Batch Normalization**: Batch normalization normalizes the input of each layer by adjusting and scaling the activations. It helps in reducing the internal covariate shift and speeds up the training process.
 
-2. **Layer Normalization**: Layer normalization normalizes the input of each layer by computing the mean and variance of the entire layer. It helps in reducing the internal covariate shift and speeds up the training process.
+2. **Layer Normalization**: Layer normalization normalizes the input of each layer by computing the mean and variance of the entire layer.
 
-3. **Group Normalization**: Group normalization normalizes the input of each layer by dividing the channels into groups and computing the mean and variance for each group. It helps in reducing the internal covariate shift and speeds up the training process.
+3. **Group Normalization**: Group normalization normalizes the input of each layer by dividing the channels into groups and computing the mean and variance for each group.
 
 ### Batch Normalization
 
